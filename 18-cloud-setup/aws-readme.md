@@ -13,7 +13,7 @@
 Crear el cluster de forma imperativa
 
 ```
-eksctl create cluster --name=k8s-course --region=us-east-1 --node-type=t3.small --nodes=2 --nodes-min=1 --nodes-max=2
+eksctl create cluster --name=k8s-course --region=us-west-2 --node-type=t3.small --nodes=2 --nodes-min=1 --nodes-max=2
 ```
 
 Crear el cluster de forma declarativa
@@ -62,7 +62,7 @@ kubectl expose pod hello-cloud --type=LoadBalancer --port=8080 --target-port=808
 ### Delete cluster
 
 ```
-eksctl delete cluster --name=dev-1 --region=us-east-1
+eksctl delete cluster --name=dev-1 --region=us-west-2
 ```
 
 
