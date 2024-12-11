@@ -1,5 +1,26 @@
 # Despliegue de una aplicación de frontend y backend en la Nube de AWS
 
+## Prerequisites
+
+- AWS CLI
+- kubectl
+- eksctl
+- RDS Mysql
+
+## En esta clase:
+
+- Crear un cluster en EKS
+- Tener un RDS Mysql
+- Crear los namespaces en nuestro nuevo cluster
+- Create an Service Type ExternalName for RDS
+- Create a Secret Object for the RDS
+- Configurar ECR
+- Build para Arch x86_64 y Taggear la imagen del backend
+- Backend
+- Revisar el load balancer del servicio backend
+- Build para Arch x86_64 y Taggear la imagen del frontend
+- Frontend
+
 ### Crear un cluster en EKS
 
 La creacion del cluster puede tardar unos minutos.

@@ -4,11 +4,11 @@ apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
-  name: dev-1
+  name: k8s-cluster
   region: us-west-2
 
 managedNodeGroups:
-  - name: worker-nodes
+  - name: k8s-worker-nodes
     instanceType: t3.medium
     desiredCapacity: 2
 
