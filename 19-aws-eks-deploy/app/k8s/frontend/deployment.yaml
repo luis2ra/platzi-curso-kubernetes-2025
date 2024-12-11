@@ -16,7 +16,14 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: frontend:latest
+        image: 634365342589.dkr.ecr.us-east-1.amazonaws.com/k8s-frontend:amd64-2
         ports:
         - containerPort: 80
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "64Mi"
+          limits:
+            cpu: "100m"
+            memory: "128Mi"

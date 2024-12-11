@@ -22,7 +22,7 @@ kubectl run nginx-nodeport --image=nginx --restart=Never --port=80
 kubectl get pods
 ```
 
-**Crear un servicio de tipo NodePort**
+**Exponer un servicio con port-forward**
 
 ```
 kubectl port-forward pod/nginx-nodeport 8080:80

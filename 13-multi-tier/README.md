@@ -21,4 +21,4 @@ docker-compose build
 
 ## Backend
 
-
+minikube addons enable metrics-server
