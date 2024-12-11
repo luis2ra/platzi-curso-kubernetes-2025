@@ -80,7 +80,7 @@ Luego de crear el cluster, se puede ver el endpoint del cluster en la consola de
 ```bash
 kubectl create namespace backend
 kubectl create namespace frontend
-kubectl create namespace persistence
+kubectl create namespace storage
 ```
 
 ### Create an Service Type ExternalName for RDS
