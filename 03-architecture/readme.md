@@ -1,1 +1,1 @@
-# Test File for 03-architecture
+# 03-architecture

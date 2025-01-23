@@ -32,16 +32,27 @@ kubectl rollout history deployment/<deployment-name>
 kubectl rollout history deployment/<deployment-name> --revision=<revision-number>
 ```
 
+## Install metrics server on EKS
+
+```
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+
+## Ver las metricas de los pods
+
+```
+kubectl top pods -n backend
+```
 
 ## Comandos para solucionar problemas de MySQL
 
+### Instalar mysql-client en el pod de alpine
+
+```
+apk add mysql-client -y
+```
+
+## Conectar a la base de datos
 ```
 mysql -u $DB_USER -h $DB_HOST -D $DB_NAME -p
-```
-
-
-## Instalar mysql-client en el pod de alpine
-
-```
-kubectl exec -it <pod-name> -- apk update && apk add mysql-client -y
 ```

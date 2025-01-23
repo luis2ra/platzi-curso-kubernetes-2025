@@ -3,7 +3,7 @@ var requestOptions = {
     redirect: 'follow'
   };
 
-  fetch('http://ur-load-balancer-url:5001/getMyInfo', requestOptions)
+  fetch('http://a809588120a774135ab2a784ee84b746-1942087673.us-east-1.elb.amazonaws.com:5001/getMyInfo', requestOptions)
   .then(res => {
     if (!res.ok) {
       alert("HTTP error! status:" + res.status);

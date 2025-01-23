@@ -96,6 +96,16 @@ Con url directa del HOST
 kubectl -n backend create secret generic mysql --from-literal=DB_PASSWORD=admink8s --from-literal=DB_USER=admink8s --from-literal=DB_HOST=k8s-test-course.cluster-criggmwnb5gy.us-east-1.rds.amazonaws.com --from-literal=DB_NAME=userdb
 ```
 
+
+## Crear un job para inicializar la base de datos
+
+```
+kubectl -n backend apply -f app/k8s/db-job-init/config.yaml
+kubectl -n backend apply -f app/k8s/db-job-init/init-job.yaml
+```
+
+## Crear un secret para el job
+
 ```
 kubectl -n backend create secret generic mysql --from-literal=DB_PASSWORD=admink8s --from-literal=DB_USER=admink8s --from-literal=DB_HOST=mysql.storage.svc.cluster.local --from-literal=DB_NAME=userdb
 ```
@@ -114,23 +124,22 @@ Backend:
 ```
 {
     "repository": {
-        "repositoryArn": "arn:aws:ecr:us-east-1:634365342589:repository/k8s-backend",
-        "registryId": "634365342589",
+        "repositoryArn": "arn:aws:ecr:us-east-1:<your-account-id>:repository/k8s-backend",
+        "registryId": "<your-account-id>",
         "repositoryName": "k8s-backend",
-        "repositoryUri": "634365342589.dkr.ecr.us-east-1.amazonaws.com/k8s-backend",
+        "repositoryUri": "<your-account-id>.dkr.ecr.us-east-1.amazonaws.com/k8s-backend",
         ...
     }
 }
 ```
 
 Frontend:
-```
 {
     "repository": {
-        "repositoryArn": "arn:aws:ecr:us-east-1:634365342589:repository/k8s-frontend",
-        "registryId": "634365342589",
+        "repositoryArn": "arn:aws:ecr:us-east-1:<your-account-id>:repository/k8s-frontend",
+        "registryId": "<your-account-id>",
         "repositoryName": "k8s-frontend",
-        "repositoryUri": "634365342589.dkr.ecr.us-east-1.amazonaws.com/k8s-frontend",
+        "repositoryUri": "<your-account-id>.dkr.ecr.us-east-1.amazonaws.com/k8s-frontend",
         ...
     }
 }
@@ -139,15 +148,15 @@ Frontend:
 ### Login en ECR
 
 ```
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 634365342589.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <your-account-id>.dkr.ecr.us-east-1.amazonaws.com
 ```
 
 ### Build para Arch x86_64 y Taggear la imagen del backend
 
 ```
-docker buildx build --platform linux/amd64 -t backend:latest .
-docker tag backend:latest 634365342589.dkr.ecr.us-east-1.amazonaws.com/k8s-backend:amd64
-docker push 634365342589.dkr.ecr.us-east-1.amazonaws.com/k8s-backend:amd64
+docker buildx build --platform linux/amd64 -t backend:v1 .
+docker tag backend:v1 <your-account-id>.dkr.ecr.us-east-1.amazonaws.com/k8s-backend:v1
+docker push <your-account-id>.dkr.ecr.us-east-1.amazonaws.com/k8s-backend:v1
 ```
 
 ### Backend
@@ -165,9 +174,9 @@ kubectl get svc -n backend
 ### Build para Arch x86_64 y Taggear la imagen del frontend
 
 ```
-docker buildx build --platform linux/amd64 -t frontend:amd64 .
-docker tag frontend:amd64 634365342589.dkr.ecr.us-east-1.amazonaws.com/k8s-frontend:amd64
-docker push 634365342589.dkr.ecr.us-east-1.amazonaws.com/k8s-frontend:amd64
+docker buildx build --platform linux/amd64 -t frontend:v1 .
+docker tag frontend:v1 <your-account-id>.dkr.ecr.us-east-1.amazonaws.com/k8s-frontend:v1
+docker push <your-account-id>.dkr.ecr.us-east-1.amazonaws.com/k8s-frontend:v1
 ```
 
 ### Frontend
