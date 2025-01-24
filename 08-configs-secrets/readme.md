@@ -23,3 +23,7 @@ kubectl get configmap auth-config
 # Lists the Secret named 'auth-secret' in the current namespace
 kubectl get secret auth-secret
 ```
+
+## Other links
+
+- https://external-secrets.io/latest/
