@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: fluentd-pv-0
+  labels:
+    type: local
+    app: fluentd
+    pod: fluentd-app-0
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/fluentd-0
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: fluentd-pv-1
+  labels:
+    type: local
+    app: fluentd
+    pod: fluentd-app-1
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/fluentd-1

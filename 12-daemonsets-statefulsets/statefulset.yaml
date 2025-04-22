@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: fluentd-app
+spec:
+  serviceName: fluentd-service # Required field
+  replicas: 2 # Optional, defaults to 1
+  selector:
+    matchLabels:
+      name: fluentd-app
+  template:
+    metadata:
+      labels:
+        name: fluentd-app
+    spec:
+      containers:
+      - name: fluentd-app
+        image: fluent/fluentd
+        volumeMounts:
+        - name: fluentd-storage
+          mountPath: /fluentd/log
+  volumeClaimTemplates:
+  - metadata:
+      name: fluentd-storage
+    spec:
+      selector:
+        matchLabels:
+          app: fluentd
+          pod: ${metadata.name}  # This will be replaced with fluentd-app-0 or fluentd-app-1
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fluentd-service
+spec:
+  clusterIP: None  # This makes it a headless service
+  selector:
+    name: fluentd-app
+  ports:
+  - port: 24224
+    name: forward
+    targetPort: 24224
