@@ -1,16 +1,26 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: fluentd-app
+  name: nginx-ds
 spec:
   selector:
     matchLabels:
-      name: fluentd-app
+      app: nginx-app
   template:
     metadata:
       labels:
-        name: fluentd-app
+        app: nginx-app
     spec:
       containers:
-      - name: fluentd-app
-        image: fluent/fluentd
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
