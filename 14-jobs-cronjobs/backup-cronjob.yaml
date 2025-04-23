@@ -18,17 +18,17 @@ spec:
             - /bin/bash
             - -c
             - |
-              mysqldump -h mysql-service -u root -p$(MYSQL_ROOT_PASSWORD) $(MYSQL_DATABASE) > /backup/mysql-backup-$(date +%Y%m%d_%H%M).sql
+              mysqldump -h mysql-service-sts -u root -p$(MYSQL_ROOT_PASSWORD) $(MYSQL_DATABASE) > /backup/mysql-backup-$(date +%Y%m%d_%H%M).sql
             env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secrets
+                  name: mysql-secret
                   key: root-password
             - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secrets
+                  name: mysql-secret
                   key: database
             volumeMounts:
             - name: backup-storage
