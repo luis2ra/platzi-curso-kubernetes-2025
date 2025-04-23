@@ -27,6 +27,8 @@ curl -X POST "http://localhost:35000/v1/chat/completions" -H "Content-Type: appl
 
 ```bash
 minikube tunnel
+
+# Edit de /etc/hosts file
 sudo vi /etc/hosts
 
 # Add the following line to the file
