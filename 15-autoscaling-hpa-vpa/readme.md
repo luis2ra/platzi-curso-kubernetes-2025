@@ -52,6 +52,8 @@ kubectl apply -f my-vpa.yaml
 kubectl describe vpa my-vpa
 ```
 
+--------------------------------------------------------------------------------------------------
+
 # Scaling Demo
 
 ## App deployment
