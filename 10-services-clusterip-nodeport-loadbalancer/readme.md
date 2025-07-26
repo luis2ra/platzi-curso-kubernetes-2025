@@ -1,4 +1,4 @@
-Clase 10: Tipos de servicios: NodePort, ClusterIP, LoadBalancer, ExternalName
+# Clase 10: Tipos de servicios: NodePort, ClusterIP, LoadBalancer, ExternalName
 
 ## NodePort
 
