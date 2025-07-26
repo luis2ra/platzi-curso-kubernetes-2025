@@ -2,8 +2,15 @@
 
 ## First, create the directory for hostPath, remember to run this on the minikube node using sudo
 ```bash
+
 minikube ssh
+sudo su
+cd /mnt/
+mkdir data
 echo '<h1>Hello from Volume!</h1>' > /mnt/data/index.html
+exit  # para salir del sudo
+exit  # para salir del ssh del minikube
+
 ```
 
 ## Apply the PV and PVC
