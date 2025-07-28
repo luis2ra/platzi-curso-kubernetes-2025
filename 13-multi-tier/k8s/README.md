@@ -9,13 +9,13 @@
 
 ## Configuracion de minikube para tomar imagenes de registry local
 
-minikube start --driver=docker
+$ minikube start --driver=docker
 
-eval $(minikube docker-env)
+$ eval $(minikube docker-env)
 
-docker ps
+$ docker ps
 
-docker-compose build
+$ docker-compose build
 
 ## Frontend
 
