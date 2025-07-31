@@ -100,7 +100,7 @@ kubectl get deployment
 kubectl delete pod hello-deployment-<pod-id>
 ```
 
-**Actualizar la imagen del Deployment**
+**Actualizar la imagen del Deployment (OJO: es la clave de usar deployment!!!)**
 
 ```
 kubectl set image deployment/hello-deployment hello-app=gcr.io/google-samples/hello-app:2.0
@@ -135,10 +135,3 @@ kubectl get pods
 ```
 kubectl port-forward deploy/hello-deployment 8080:8080
 ```
-
-
-
-
-
-
-
