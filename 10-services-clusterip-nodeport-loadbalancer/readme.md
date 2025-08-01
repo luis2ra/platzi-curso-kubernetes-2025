@@ -8,22 +8,33 @@ Un servicio de tipo NodePort expone un Pod en un puerto específico en cada nodo
 **Crear un Deployment**
 
 ```
-kubectl apply -f deployment-nodeport.yaml
+kubectl apply -f 10-services-clusterip-nodeport-loadbalancer/service-01-nodeport.yaml
+```
+
+**Probando NodePort**
+
+```
+minikube service hello-service-np
 ```
 
 ## ClusterIP
 
 Es el tipo de Servicio predeterminado en Kubernetes. Expone el Servicio dentro del clúster, asignándole una dirección IP interna accesible solo desde dentro del clúster. No es accesible desde fuera del clúster.
 
-** Casos de uso **
+**Casos de uso**
 
 Ideal para aplicaciones internas que solo necesitan ser consumidas por otros Pods dentro del clúster. Tales, como microservicios que se comunican entre sí.
 
 
 ```
-kubectl apply -f deployment-clusterip.yaml
+kubectl apply -f 10-services-clusterip-nodeport-loadbalancer/service-02-clusterip.yaml
 ```
 
+**Probando ClusterIP**
+
+```
+minikube service hello-service-clusterip
+```
 
 
 ## LoadBalancer
@@ -34,6 +45,14 @@ Casos de uso:
 Ideal para aplicaciones en producción que requieren alta disponibilidad y distribución del tráfico entre múltiples Pods.
 
 Ejemplo: Aplicaciones web o APIs que necesitan ser accesibles desde Internet.
+
+**Crear un Deployment para LoadBalancer**
+
+```
+kubectl apply -f 10-services-clusterip-nodeport-loadbalancer/service-03-loadbalancer.yaml
+```
+
+**Probando LoadBalancer**
 
 En nuestro cluster en local, podemos simular el servicio de tipo LoadBalancer con el siguiente comando:
 
@@ -49,6 +68,8 @@ No redirige el tráfico a Pods, sino que actúa como un alias para un nombre de 
 Útil para integrar servicios externos (fuera del clúster) con aplicaciones dentro del clúster.
 
 
+**Ejemplo**
+
 ```
 apiVersion: v1
 kind: Service
@@ -59,6 +80,11 @@ spec:
   externalName: my-database.cluster-abcdef123456.us-west-2.rds.amazonaws.com
 ```
 
+**Crear un servicio de tipo ExternalName**
+
+```
+kubectl apply -f 10-services-clusterip-nodeport-loadbalancer/service-04-externalname.yaml
+```
 
 # Documentación
 
